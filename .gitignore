@@ -1,0 +1,37 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Build
+.next/
+out/
+build/
+dist/
+
+# Runtime database (never commit real attendee data)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+data/*.db-journal
+data/test-*.db*
+
+# Environment
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# QA artefacts
+qa/
+.qa-shots/
+
+# Logs / OS
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

@@ -1,0 +1,55 @@
+{
+  "name": "ephaphata",
+  "version": "1.0.0",
+  "private": true,
+  "description": "EPHAPHATA - digital experience & event operations platform",
+  "scripts": {
+    "dev": "next dev -H 0.0.0.0 -p 3000",
+    "build": "next build",
+    "start": "next start -H 0.0.0.0 -p ${PORT:-3000}",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "assets": "node scripts/build-assets.mjs",
+    "db:seed": "node scripts/seed.mjs",
+    "db:reset": "node scripts/seed.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "test:admin": "node tests/admin-smoke.mjs",
+    "test:admin:ui": "node tests/admin-ui.mjs",
+    "qa": "npm run typecheck && npm run lint && npm test && node tests/routes.mjs && node tests/e2e-demo.mjs && node tests/demo-journey.mjs && node tests/admin-smoke.mjs && node tests/admin-ui.mjs",
+    "setup": "node scripts/bootstrap-admin.mjs"
+  },
+  "dependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/node": "^22.20.5",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.2",
+    "bcryptjs": "^3.0.2",
+    "better-sqlite3": "^12.4.1",
+    "framer-motion": "^14.9.1",
+    "lucide-react": "^1.69.0",
+    "next": "^15.5.29",
+    "playwright": "^1.64.1",
+    "postcss": "^8.5.32",
+    "qrcode": "^1.5.4",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-hook-form": "^7.91.0",
+    "recharts": "^3.10.1",
+    "sharp": "^0.35.5",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.7",
+    "@types/better-sqlite3": "^9.6.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^15.5.29",
+    "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}
