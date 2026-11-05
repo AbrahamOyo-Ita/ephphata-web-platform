@@ -14,8 +14,14 @@ import path from "node:path";
  * application code and the database.
  */
 
-const DB_DIR = path.join(process.cwd(), "data");
-const DB_PATH = process.env.DATABASE_PATH ?? path.join(DB_DIR, "ephaphata.db");
+// Vercel's deployment filesystem is read-only. `/tmp` is writable there, but
+// ephemeral; a durable host should always provide DATABASE_PATH on persistent
+// storage before enabling registrations or admin operations.
+const DEFAULT_DB_PATH = process.env.VERCEL
+  ? "/tmp/ephaphata.db"
+  : path.join(process.cwd(), "data", "ephaphata.db");
+const DB_PATH = process.env.DATABASE_PATH ?? DEFAULT_DB_PATH;
+const DB_DIR = path.dirname(DB_PATH);
 
 declare global {
   // eslint-disable-next-line no-var
