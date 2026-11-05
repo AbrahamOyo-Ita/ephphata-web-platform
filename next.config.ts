@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   reactStrictMode: true,
   poweredByHeader: false,
   outputFileTracingRoot: process.cwd(),
+  outputFileTracingIncludes: {
+    "/*": ["./migrations/**/*.sql"],
+  },
   // better-sqlite3 is a native module — it must never be bundled.
   serverExternalPackages: ["better-sqlite3", "bcryptjs"],
   images: {
