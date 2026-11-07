@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -7,22 +6,13 @@ import { site } from "@/lib/site";
  * Typography
  * ------------------------------------------------------------------
  * Chosen by comparing letterforms against the supplied flyers:
- * Casagrande Grind is supplied with the project and bundled locally, so the
- * typography is identical in development, CI, and production.
+ *  - Anton        → the heavy, tightly-set uppercase of "THREE DAYS" /
+ *                   "FOUR DAYS" / "UNICAL". Condensed, high-impact display.
+ *  - Bodoni Moda  → the high-contrast serif of the large "FESTIVAL" treatments.
+ *  - Inter        → neutral UI/body face for forms, tables and dashboards.
+ *  - Caveat       → the handwritten "with" / "To Go" accent in the flyers.
+ * All are self-hosted through next/font (no runtime CDN request).
  */
-const casagrandeWide = localFont({
-  src: "../../CasagrandeGrind-Wide.woff2",
-  variable: "--font-display",
-  display: "swap",
-  preload: true,
-});
-
-const casagrandeRegular = localFont({
-  src: "../../CasagrandeGrind-Regular.woff2",
-  variable: "--font-sans",
-  display: "swap",
-  preload: true,
-});
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
@@ -55,7 +45,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html
       lang="en"
-      className={`${casagrandeWide.variable} ${casagrandeRegular.variable}`}
       suppressHydrationWarning
     >
       <head>
