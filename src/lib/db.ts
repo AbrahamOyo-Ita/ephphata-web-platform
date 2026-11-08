@@ -56,6 +56,53 @@ function create(): Database.Database {
     }
   }
 
+  // A fresh Vercel runtime starts with an empty SQLite file. Keep the public
+  // registration journey usable until the organiser creates/edits the live
+  // event in Admin by bootstrapping the verified UNICAL gathering.
+  if (!(db.prepare("SELECT 1 FROM events LIMIT 1").get())) {
+    const orgId = randomUUID();
+    const eventId = randomUUID();
+    db.prepare(
+      `INSERT INTO organizations (id, name, short_name, tagline, email, phone, address)
+       VALUES (?, ?, ?, ?, ?, ?, ?)`
+    ).run(
+      orgId,
+      "Ephphata with OT Power & The Attackers",
+      "Ephphata",
+      "One gathering. One purpose.",
+      "hello@ephaphata.com",
+      "+234 800 000 0000",
+      "Calabar, Cross River State, Nigeria"
+    );
+    db.prepare(
+      `INSERT INTO events
+       (id, org_id, slug, title, edition_label, theme, scripture, summary, description,
+        status, is_featured, starts_at, ends_at, timezone, venue_name, venue_address,
+        maps_url, poster_url, hero_bg, capacity, registration_open, volunteer_open, contact_email)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'published', 1, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, 1, ?)`
+    ).run(
+      eventId,
+      orgId,
+      "ephaphata-unical-2026",
+      "Ephphata UNICAL 2026",
+      "UNICAL",
+      "THE NEW",
+      "Isaiah 43:19",
+      "One gathering. One purpose. A live worship experience with OT Power & The Attackers at the University of Calabar.",
+      "Ephphata UNICAL is the Calabar edition of the gathering - a live night of worship, the word and prayer with OT Power & The Attackers.",
+      "2026-11-13T15:00:00+01:00",
+      "2026-11-13T21:00:00+01:00",
+      "Africa/Lagos",
+      "UNICAL International Conference Centre",
+      "University of Calabar, Calabar, Cross River State, Nigeria",
+      "https://www.google.com/maps/search/?api=1&query=UNICAL+International+Conference+Centre+Calabar",
+      "/brand/flyers/unical-lineup.webp",
+      "green",
+      5000,
+      "events@ephaphata.com"
+    );
+  }
+
   // Vercel/ephemeral hosts cannot run the one-time CLI bootstrap against the
   // same filesystem as each server function. When production credentials are
   // configured, provision that account on the first database open instead.
