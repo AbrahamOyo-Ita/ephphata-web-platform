@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Media & gallery",
-  description: "Photography, film and recaps from previous EphaPhata editions.",
+  description: "Photography, film and recaps from previous Ephphata editions.",
 };
 
 const FLYER_FALLBACKS = [

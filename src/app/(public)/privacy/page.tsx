@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Privacy notice",
-  description: "How EphaPhata collects, uses and protects your information.",
+  description: "How Ephphata collects, uses and protects your information.",
 };
 
 export default function PrivacyPage() {

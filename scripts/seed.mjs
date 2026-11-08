@@ -47,8 +47,8 @@ db.prepare(
    VALUES (?,?,?,?,?,?,?,?)`
 ).run(
   ORG,
-  "EphaPhata with OT Power & The Attackers",
-  "EphaPhata",
+  "Ephphata with OT Power & The Attackers",
+  "Ephphata",
   "One gathering. One purpose.",
   "hello@ephaphata.com", // PROVISIONAL
   "+234 800 000 0000", // PROVISIONAL
@@ -73,10 +73,10 @@ const insertEvent = db.prepare(
 );
 
 insertEvent.run(
-  E_UNICAL, ORG, "ephaphata-unical-2026", "EphaPhata UNICAL 2026", "UNICAL",
+  E_UNICAL, ORG, "ephaphata-unical-2026", "Ephphata UNICAL 2026", "UNICAL",
   "THE NEW", "Isaiah 43:19",
   "One gathering. One purpose. A live worship experience with OT Power & The Attackers at the University of Calabar.",
-  "EphaPhata UNICAL is the Calabar edition of the gathering - a live night of worship, the word and prayer with OT Power & The Attackers and guest ministers, hosted at the UNICAL International Conference Centre.\n\nDoors open ahead of the 3:00PM start so the hall can be filled and settled before the first sound. The evening moves through praise, the word, and a closing season of prayer. Every part of the programme is built around one aim: that people would leave different from how they came.\n\nThis is an all-standing gathering. There are no reserved physical seats.",
+  "Ephphata UNICAL is the Calabar edition of the gathering - a live night of worship, the word and prayer with OT Power & The Attackers and guest ministers, hosted at the UNICAL International Conference Centre.\n\nDoors open ahead of the 3:00PM start so the hall can be filled and settled before the first sound. The evening moves through praise, the word, and a closing season of prayer. Every part of the programme is built around one aim: that people would leave different from how they came.\n\nThis is an all-standing gathering. There are no reserved physical seats.",
   "published", 1, UNICAL_START, "2026-11-13T21:00:00+01:00",
   "UNICAL International Conference Centre",
   "University of Calabar, Calabar, Cross River State, Nigeria",
@@ -86,10 +86,10 @@ insertEvent.run(
 );
 
 insertEvent.run(
-  E_JUNE, ORG, "ephaphata-festival-2026", "EphaPhata Festival 2026", "FESTIVAL",
+  E_JUNE, ORG, "ephaphata-festival-2026", "Ephphata Festival 2026", "FESTIVAL",
   "THE NEW", "Isaiah 43:19",
   "The festival edition of the gathering - Event 45, Calabar.",
-  "The EphaPhata Festival edition, held at Event 45, 6 Douglas Avenue, State Housing, Calabar. Times shown on the official flyer vary across cards (3PM / 4PM / 5PM) - confirm the final start time with the organising team before publishing.",
+  "The Ephphata Festival edition, held at Event 45, 6 Douglas Avenue, State Housing, Calabar. Times shown on the official flyer vary across cards (3PM / 4PM / 5PM) - confirm the final start time with the organising team before publishing.",
   "published", 0, "2026-06-05T15:00:00+01:00", "2026-06-05T21:00:00+01:00",
   "Event 45", "6 Douglas Avenue, State Housing, Calabar",
   "https://www.google.com/maps/search/?api=1&query=6+Douglas+Avenue+State+Housing+Calabar",
@@ -98,7 +98,7 @@ insertEvent.run(
 );
 
 insertEvent.run(
-  E_PAST, ORG, "ephaphata-calabar-2025", "EphaPhata Calabar 2025", "CALABAR",
+  E_PAST, ORG, "ephaphata-calabar-2025", "Ephphata Calabar 2025", "CALABAR",
   "THE NEW", "Isaiah 43:19",
   "The previous Calabar edition - archive reference.",
   "A completed edition included here so the platform can demonstrate archive behaviour, past-edition galleries and post-event follow-up. Replace this record with the verified 2025 edition details.",
@@ -154,9 +154,9 @@ SCHEDULE.forEach(([title, desc, speakerName, dur, order]) =>
 
 /* -------------------------------------------------------------------- FAQs */
 [
-  ["Is EphaPhata free to attend?", "Yes. EphaPhata is a free gathering. Registration helps the organising team prepare the hall, plan seating flow and send you event-day instructions."],
+  ["Is Ephphata free to attend?", "Yes. Ephphata is a free gathering. Registration helps the organising team prepare the hall, plan seating flow and send you event-day instructions."],
   ["Is there a dress code?", "There is no formal dress code. Come as you are, and dress comfortably - the evening involves prolonged worship."],
-  ["Will there be physical seats?", "EphaPhata is an all-standing event. There will be no physical seat available during the event. Seating provision is limited to reserved areas for the aged and persons with mobility needs."],
+  ["Will there be physical seats?", "Ephphata is an all-standing event. There will be no physical seat available during the event. Seating provision is limited to reserved areas for the aged and persons with mobility needs."],
   ["Can I bring children?", "Yes. Families are welcome. A quiet room is available near the main entrance for parents with infants."],
   ["Will the gathering be streamed?", "Streaming availability is confirmed closer to the date and announced through the official channels only."],
   ["How do I check in?", "Present the QR code from your confirmation page - or your registration reference - at the check-in desk. We recommend saving your confirmation to your phone before you arrive, since network coverage at the venue may be limited."],
@@ -375,20 +375,20 @@ const insTpl = db.prepare(
 );
 const TPL_REG = id();
 insTpl.run(TPL_REG, "Registration confirmation", "email", "You're registered for {{event_title}}",
-  "Hi {{first_name}},\n\nYour place at {{event_title}} is confirmed.\n\nReference: {{reference}}\nDate: {{event_date}}\nVenue: {{venue}}\n\nBring this reference or your QR code to the check-in desk.\n\nEphaPhata",
+  "Hi {{first_name}},\n\nYour place at {{event_title}} is confirmed.\n\nReference: {{reference}}\nDate: {{event_date}}\nVenue: {{venue}}\n\nBring this reference or your QR code to the check-in desk.\n\nEphphata",
   JSON.stringify(["first_name", "event_title", "reference", "event_date", "venue"]), "approved");
 const TPL_REMINDER = id();
 insTpl.run(TPL_REMINDER, "48-hour reminder", "email", "{{event_title}} is in two days",
-  "Hi {{first_name}},\n\n{{event_title}} is in two days at {{venue}}.\n\nDoors open early - please arrive ahead of the start time, and have your QR code ready.\n\nEphaPhata",
+  "Hi {{first_name}},\n\n{{event_title}} is in two days at {{venue}}.\n\nDoors open early - please arrive ahead of the start time, and have your QR code ready.\n\nEphphata",
   JSON.stringify(["first_name", "event_title", "venue"]), "approved");
 insTpl.run(id(), "Volunteer application received", "email", "We received your application",
   "Hi {{first_name}},\n\nThank you for offering to serve. Our coordination team will be in touch.\n\nReference: {{reference}}",
   JSON.stringify(["first_name", "reference"]), "approved");
 insTpl.run(id(), "Volunteer accepted", "email", "You're on the team",
-  "Hi {{first_name}},\n\nYou have been accepted to serve at {{event_title}}. Your department coordinator will contact you with briefing details.\n\nEphaPhata",
+  "Hi {{first_name}},\n\nYou have been accepted to serve at {{event_title}}. Your department coordinator will contact you with briefing details.\n\nEphphata",
   JSON.stringify(["first_name", "event_title"]), "approved");
 insTpl.run(id(), "Event-day welcome (WhatsApp)", "whatsapp", null,
-  "Hello {{first_name}}! Doors open soon at {{venue}}. Show your QR code at Gate A. See you inside - EphaPhata.",
+  "Hello {{first_name}}! Doors open soon at {{venue}}. Show your QR code at Gate A. See you inside - Ephphata.",
   JSON.stringify(["first_name", "venue"]), "draft");
 
 /* -------------------------------------------------------------- campaigns */
@@ -398,11 +398,11 @@ const insCamp = db.prepare(
    VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
 );
 insCamp.run(id(), E_UNICAL, "UNICAL - registration confirmation batch", "email", TPL_REG,
-  "You're registered for EphaPhata UNICAL 2026", null, "all_registrants", "sent",
+  "You're registered for Ephphata UNICAL 2026", null, "all_registrants", "sent",
   iso(Date.now() - 3 * 86_400_000), 148, 141, 7, adminId.communications_manager,
   iso(Date.now() - 3 * 86_400_000));
 insCamp.run(id(), E_UNICAL, "UNICAL - 48-hour reminder", "email", TPL_REMINDER,
-  "EphaPhata UNICAL is in two days", null, "all_registrants", "scheduled",
+  "Ephphata UNICAL is in two days", null, "all_registrants", "scheduled",
   null, 0, 0, 0, adminId.communications_manager, iso(Date.now() - 86_400_000));
 insCamp.run(id(), E_UNICAL, "Volunteer briefing", "email", null,
   "Volunteer briefing - what to expect", null, "volunteers", "draft",
@@ -423,17 +423,17 @@ insAuto.run(id(), E_UNICAL, "Post-event appreciation", "post_event", "email", nu
 const insPage = db.prepare(
   `INSERT INTO content_pages (id, slug, title, body, status, published_at) VALUES (?,?,?,?,?,?)`
 );
-insPage.run(id(), "about-story", "The story of EphaPhata",
-  "EphaPhata began as a single gathering with one aim: to create room for people to meet God without distraction. What started in Calabar has grown into a recurring gathering that draws worshippers from across the region.\n\nThe name carries the weight of the moment it is taken from - the invitation to be opened. Every edition is built around that invitation: that ears would open, hearts would open, and lives would be opened to what God is doing now.\n\nEach edition is hosted by OT Power & The Attackers, with guest ministers joining from across the country.",
+insPage.run(id(), "about-story", "The story of Ephphata",
+  "Ephphata began as a single gathering with one aim: to create room for people to meet God without distraction. What started in Calabar has grown into a recurring gathering that draws worshippers from across the region.\n\nThe name carries the weight of the moment it is taken from - the invitation to be opened. Every edition is built around that invitation: that ears would open, hearts would open, and lives would be opened to what God is doing now.\n\nEach edition is hosted by OT Power & The Attackers, with guest ministers joining from across the country.",
   "published", iso(Date.now() - 30 * 86_400_000));
 insPage.run(id(), "mission", "Mission & vision",
-  "Our mission is to gather worshippers around sound and the word, and to send them out carrying something they did not arrive with.\n\nOur vision is a permanent home for the EphaPhata community - a place to register, to serve, to pray and to stay connected between editions.",
+  "Our mission is to gather worshippers around sound and the word, and to send them out carrying something they did not arrive with.\n\nOur vision is a permanent home for the Ephphata community - a place to register, to serve, to pray and to stay connected between editions.",
   "published", iso(Date.now() - 30 * 86_400_000));
 insPage.run(id(), "privacy", "Privacy policy",
   "We collect only what we need to run the gathering safely: your name, contact details, and your registration preferences. We use it to confirm your place, send you event-day instructions, and account for attendance.\n\nRegistering for an event does not subscribe you to marketing messages. Newsletter subscription is a separate, explicit choice.\n\nPrayer requests are private. They are visible only to the authorised prayer team and are never published without explicit permission.\n\nYou may request a copy of your data, or ask us to delete it, by contacting the organising team. Records relating to an event are retained for 12 months after the event and then reviewed.\n\nThis policy must be reviewed and approved by the organising team before production use.",
   "published", iso(Date.now() - 20 * 86_400_000));
 insPage.run(id(), "terms", "Terms of use",
-  "Registration is a declaration of intent to attend. Places are subject to hall capacity. The organising team may close registration when capacity is reached, or move attendees to a waitlist.\n\nEphaPhata is an all-standing gathering. By registering you accept that no physical seat is guaranteed.\n\nCredentials (QR codes and references) are personal. Sharing a credential may result in check-in being refused.\n\nThese terms must be reviewed by the organising team before production use.",
+  "Registration is a declaration of intent to attend. Places are subject to hall capacity. The organising team may close registration when capacity is reached, or move attendees to a waitlist.\n\nEphphata is an all-standing gathering. By registering you accept that no physical seat is guaranteed.\n\nCredentials (QR codes and references) are personal. Sharing a credential may result in check-in being refused.\n\nThese terms must be reviewed by the organising team before production use.",
   "published", iso(Date.now() - 20 * 86_400_000));
 
 /* ----------------------------------------------------------------- galleries */
@@ -441,7 +441,7 @@ insPage.run(id(), "terms", "Terms of use",
 const galId = id();
 db.prepare(
   `INSERT INTO galleries (id, event_id, title, slug, cover_url, category, status) VALUES (?,?,?,?,?,?,?)`
-).run(galId, E_PAST, "EphaPhata Calabar 2025", "calabar-2025",
+).run(galId, E_PAST, "Ephphata Calabar 2025", "calabar-2025",
   "/brand/flyers/festival-lineup.webp", "previous-editions", "published");
 
 // Placeholder media slots - clearly labelled, awaiting approved photography.
@@ -475,7 +475,7 @@ insTest.run(id(), E_PAST, "SAMPLE - awaiting approval", "Attendee",
 db.prepare(
   `INSERT INTO announcements (id, event_id, title, body, severity, is_published) VALUES (?,?,?,?,?,?)`
 ).run(id(), E_UNICAL, "Registration for UNICAL 2026 is open",
-  "Registration for EphaPhata UNICAL 2026 (Friday 13 November) is now open. Please register before the event so the team can prepare the hall and send you arrival instructions.",
+  "Registration for Ephphata UNICAL 2026 (Friday 13 November) is now open. Please register before the event so the team can prepare the hall and send you arrival instructions.",
   "important", 1);
 
 /* ---------------------------------------------------------------- timers */

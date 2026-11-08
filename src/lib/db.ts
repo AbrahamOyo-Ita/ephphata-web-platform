@@ -2,6 +2,8 @@ import "server-only";
 import Database from "better-sqlite3";
 import { readFileSync, mkdirSync, existsSync } from "node:fs";
 import path from "node:path";
+import { randomUUID } from "node:crypto";
+import bcrypt from "bcryptjs";
 
 /**
  * EPHAPHATA data access
@@ -42,6 +44,36 @@ function create(): Database.Database {
     "utf8"
   );
   db.exec(schema);
+  // Keep existing local/demo databases compatible with the current form.
+  const registrationColumns = db.prepare("PRAGMA table_info(registrations)").all() as Array<{ name: string }>;
+  if (!registrationColumns.some((column) => column.name === "occupation")) {
+    try {
+      db.exec("ALTER TABLE registrations ADD COLUMN occupation TEXT NOT NULL DEFAULT ''");
+    } catch (error) {
+      // Next may initialise several workers in parallel during a build.
+      // Another worker winning this idempotent upgrade is safe.
+      if (!String(error).includes("duplicate column name: occupation")) throw error;
+    }
+  }
+
+  // Vercel/ephemeral hosts cannot run the one-time CLI bootstrap against the
+  // same filesystem as each server function. When production credentials are
+  // configured, provision that account on the first database open instead.
+  // Existing accounts and all other data remain untouched.
+  const email = (process.env.ADMIN_EMAIL ?? "").trim().toLowerCase();
+  const password = process.env.ADMIN_PASSWORD ?? "";
+  if (email && password.length >= 12 && !db.prepare("SELECT 1 FROM profiles WHERE lower(email) = ?").get(email)) {
+    db.prepare(
+      `INSERT INTO profiles (id, email, full_name, phone, role, status, password_hash)
+       VALUES (?, ?, ?, ?, 'super_admin', 'active', ?)`
+    ).run(
+      randomUUID(),
+      email,
+      (process.env.ADMIN_NAME ?? "Administrator").trim() || "Administrator",
+      null,
+      bcrypt.hashSync(password, 12)
+    );
+  }
 
   return db;
 }

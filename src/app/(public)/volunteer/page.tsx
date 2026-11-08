@@ -13,7 +13,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Volunteer",
-  description: "Serve at EphaPhata - ten departments, one purpose.",
+  description: "Serve at Ephphata - ten departments, one purpose.",
 };
 
 export default function VolunteerPage() {

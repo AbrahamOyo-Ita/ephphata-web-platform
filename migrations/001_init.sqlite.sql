@@ -139,6 +139,7 @@ CREATE TABLE IF NOT EXISTS registrations (
   reference             TEXT NOT NULL UNIQUE,       -- human readable, e.g. EPH-26-8H4K2Q
   first_name            TEXT NOT NULL,
   last_name             TEXT NOT NULL,
+  occupation            TEXT NOT NULL DEFAULT '',
   email                 TEXT NOT NULL COLLATE NOCASE,
   phone                 TEXT NOT NULL,
   whatsapp              TEXT,

@@ -21,6 +21,7 @@ export function ManualRegistrationForm({
     eventId: defaultEventId,
     firstName: "",
     lastName: "",
+    occupation: "",
     email: "",
     phone: "",
     whatsapp: "",
@@ -133,7 +134,7 @@ export function ManualRegistrationForm({
               setCreated(null);
               setValues((v) => ({
                 ...v,
-                firstName: "", lastName: "", email: "", phone: "", whatsapp: "", city: "", notes: "",
+                firstName: "", lastName: "", occupation: "", email: "", phone: "", whatsapp: "", city: "", notes: "",
               }));
             }}
             className="btn-outline btn-sm"
@@ -179,6 +180,8 @@ export function ManualRegistrationForm({
         <AdminField label="First name" name="firstName" value={values.firstName} onChange={(v) => set("firstName", v)} error={errors.firstName} required />
         <AdminField label="Last name" name="lastName" value={values.lastName} onChange={(v) => set("lastName", v)} error={errors.lastName} required />
       </div>
+
+      <AdminField label="Occupation" name="occupation" value={values.occupation} onChange={(v) => set("occupation", v)} error={errors.occupation} required />
 
       <AdminField label="Email address" name="email" type="email" value={values.email} onChange={(v) => set("email", v)} error={errors.email} required />
 

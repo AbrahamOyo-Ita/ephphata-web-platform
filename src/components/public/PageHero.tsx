@@ -83,7 +83,7 @@ export function PageHero({
           priority={priority}
           className="h-[clamp(96px,12vw,168px)] w-full"
         >
-          <span className="sr-only">EphaPhata brand artwork</span>
+          <span className="sr-only">Ephphata brand artwork</span>
         </BrandBG>
       )}
     </header>

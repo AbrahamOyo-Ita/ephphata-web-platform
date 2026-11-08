@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Terms of use",
-  description: "The terms that apply to registration and attendance at EphaPhata.",
+  description: "The terms that apply to registration and attendance at Ephphata.",
 };
 
 export default function TermsPage() {

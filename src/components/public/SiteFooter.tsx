@@ -83,7 +83,7 @@ export function SiteFooter({ variant = "multicolor" }: { variant?: "multicolor" 
 
         {/* Baseline */}
         <div className="flex flex-col gap-4 border-t border-white/15 pt-8 text-[0.75rem] text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} EphaPhata. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Ephphata. All rights reserved.</p>
           <p className="flex flex-wrap items-center gap-x-4 gap-y-1">
             <span>Calabar · Cross River State · Nigeria</span>
             <a

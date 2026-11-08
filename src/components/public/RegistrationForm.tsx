@@ -32,6 +32,7 @@ export function RegistrationForm({
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
+    occupation: "",
     email: "",
     phone: "",
     whatsapp: "",
@@ -160,6 +161,17 @@ export function RegistrationForm({
         />
       </fieldset>
 
+      <Field
+        label="Occupation"
+        name="occupation"
+        value={values.occupation}
+        onChange={(v) => set("occupation", v)}
+        error={errors.occupation}
+        placeholder="Student, teacher, entrepreneur..."
+        autoComplete="organization-title"
+        required
+      />
+
       {/* ── Contact ── */}
       <Field
         label="Email address"
@@ -215,7 +227,7 @@ export function RegistrationForm({
         />
         <div>
           <label htmlFor="heardVia" className="field-label">
-            How did you hear about EphaPhata?
+            How did you hear about Ephphata?
           </label>
           <select
             id="heardVia"

@@ -2,10 +2,11 @@ import { SiteHeader } from "@/components/public/SiteHeader";
 import { SiteFooter } from "@/components/public/SiteFooter";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
 import { getFeaturedEvent } from "@/lib/data/events";
+import { AttendancePrompt } from "@/components/public/AttendancePrompt";
 
 export default function PublicLayout({ children }: { children: React.ReactNode }) {
   const featured = getFeaturedEvent();
-  const registerHref = featured ? `/events/${featured.slug}/register` : "/events";
+  const registerHref = featured ? `/events/${featured.slug}/register` : "/register";
 
   return (
     <>
@@ -14,6 +15,7 @@ export default function PublicLayout({ children }: { children: React.ReactNode }
       </a>
       <ScrollProgress />
       <SiteHeader registerHref={registerHref} />
+      <AttendancePrompt registerHref={registerHref} />
       <main id="main">{children}</main>
       <SiteFooter variant="multicolor" />
     </>

@@ -41,7 +41,7 @@ The public site runs at `http://localhost:3000`, the operations app at `http://l
 `npm run db:seed` creates:
 
 - 1 organisation, 10 staff accounts (one per role)
-- 3 events, including the featured **EphaPhata UNICAL 2026**
+- 3 events, including the featured **Ephphata UNICAL 2026**
 - ~160 registrations, ~34 volunteer applications, 12 prayer requests
 - Departments, schedule segments, campaigns, testimonials, galleries
 - Notification logs and audit entries

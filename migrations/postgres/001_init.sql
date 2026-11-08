@@ -140,6 +140,7 @@ create table registrations (
   reference           text not null unique,
   first_name          text not null,
   last_name           text not null,
+  occupation          text not null default '',
   email               citext not null,
   phone               text not null,
   whatsapp            text,

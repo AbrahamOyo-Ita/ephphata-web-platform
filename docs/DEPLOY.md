@@ -1,4 +1,4 @@
-# Deploying EphaPhata
+# Deploying Ephphata
 
 Everything you need from "I just downloaded this" to "the live link is working".
 
@@ -85,7 +85,7 @@ localhost.
 
 ```bash
 # 1. create the repo
-git init && git add -A && git commit -m "EphaPhata"
+git init && git add -A && git commit -m "Ephphata"
 
 # 2. push to GitHub, then import the repo at vercel.com/new
 ```

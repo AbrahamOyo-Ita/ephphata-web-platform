@@ -2,6 +2,7 @@ import "server-only";
 import { cookies, headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
+import { createHmac, timingSafeEqual } from "node:crypto";
 import bcrypt from "bcryptjs";
 import { db } from "./db";
 import { sha256, uuid, hashIp } from "./ids";
@@ -21,9 +22,37 @@ export const SESSION_COOKIE = "eph_session";
 const SESSION_TTL_MS = 8 * 60 * 60 * 1000;
 
 function sessionTokenHash(raw: string): string {
-  const secret = process.env.SESSION_SECRET ?? (process.env.NODE_ENV === "production" ? null : "ephaphata-dev-session-secret");
+  const secret = sessionSecret();
   if (!secret) throw new Error("SESSION_SECRET must be configured in production.");
   return sha256(`${secret}:${raw}`);
+}
+
+function sessionSecret(): string | null {
+  return process.env.SESSION_SECRET ?? (process.env.NODE_ENV === "production" ? null : "ephaphata-dev-session-secret");
+}
+
+function signedSession(user: SessionUser, expiresAt: number): string {
+  const secret = sessionSecret();
+  if (!secret) throw new Error("SESSION_SECRET must be configured in production.");
+  const payload = Buffer.from(JSON.stringify({ ...user, exp: expiresAt }), "utf8").toString("base64url");
+  const signature = createHmac("sha256", secret).update(payload).digest("base64url");
+  return `v1.${payload}.${signature}`;
+}
+
+function readSignedSession(raw: string): (SessionUser & { exp: number }) | null {
+  const secret = sessionSecret();
+  const [, payload, signature] = raw.split(".");
+  if (!secret || !payload || !signature) return null;
+  const expected = createHmac("sha256", secret).update(payload).digest("base64url");
+  const actualBuffer = Buffer.from(signature);
+  const expectedBuffer = Buffer.from(expected);
+  if (actualBuffer.length !== expectedBuffer.length || !timingSafeEqual(actualBuffer, expectedBuffer)) return null;
+  try {
+    const parsed = JSON.parse(Buffer.from(payload, "base64url").toString("utf8")) as SessionUser & { exp: number };
+    return parsed.exp > Date.now() ? parsed : null;
+  } catch {
+    return null;
+  }
 }
 
 export type SessionUser = {
@@ -53,10 +82,32 @@ export async function verifyPassword(plain: string, hash: string): Promise<boole
 
 /** Creates a session row and sets the cookie. */
 export async function createSession(profileId: string): Promise<void> {
-  const raw = `${uuid()}.${Buffer.from(crypto.getRandomValues(new Uint8Array(24))).toString("base64url")}`;
-  const expires = new Date(Date.now() + SESSION_TTL_MS).toISOString();
+  const expiresAt = Date.now() + SESSION_TTL_MS;
+  const expires = new Date(expiresAt).toISOString();
 
   const hdrs = await headers();
+  const profile = db.prepare("SELECT id, email, full_name, role, status FROM profiles WHERE id = ?").get(profileId) as Omit<ProfileRow, "password_hash"> | undefined;
+  if (!profile) throw new Error("Cannot create a session for a missing profile.");
+
+  if (process.env.VERCEL) {
+    const store = await cookies();
+    store.set(SESSION_COOKIE, signedSession({
+      id: profile.id,
+      email: profile.email,
+      fullName: profile.full_name,
+      role: profile.role,
+      status: profile.status,
+    }, expiresAt), {
+      httpOnly: true,
+      sameSite: "lax",
+      secure: true,
+      path: "/",
+      maxAge: SESSION_TTL_MS / 1000,
+    });
+    return;
+  }
+
+  const raw = `${uuid()}.${Buffer.from(crypto.getRandomValues(new Uint8Array(24))).toString("base64url")}`;
   db.prepare(
     `INSERT INTO sessions (id, profile_id, token_hash, user_agent, ip_hash, expires_at)
      VALUES (?, ?, ?, ?, ?, ?)`
@@ -82,7 +133,7 @@ export async function createSession(profileId: string): Promise<void> {
 export async function destroySession(): Promise<void> {
   const store = await cookies();
   const raw = store.get(SESSION_COOKIE)?.value;
-  if (raw) {
+  if (raw && !raw.startsWith("v1.")) {
     db.prepare("DELETE FROM sessions WHERE token_hash = ?").run(sessionTokenHash(raw));
   }
   store.delete(SESSION_COOKIE);
@@ -93,6 +144,22 @@ export async function getSessionUser(): Promise<SessionUser | null> {
   const store = await cookies();
   const raw = store.get(SESSION_COOKIE)?.value;
   if (!raw) return null;
+
+  if (raw.startsWith("v1.")) {
+    const signed = readSignedSession(raw);
+    if (!signed || signed.status !== "active") return null;
+    const localProfile = db.prepare(
+      "SELECT id, email, full_name, role, status FROM profiles WHERE email = ? COLLATE NOCASE"
+    ).get(signed.email) as Omit<ProfileRow, "password_hash"> | undefined;
+    if (!localProfile || localProfile.status !== "active") return null;
+    return {
+      id: localProfile.id,
+      email: localProfile.email,
+      fullName: localProfile.full_name,
+      role: localProfile.role,
+      status: localProfile.status,
+    };
+  }
 
   const row = db
     .prepare(

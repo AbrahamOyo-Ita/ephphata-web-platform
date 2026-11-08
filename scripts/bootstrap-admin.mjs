@@ -78,8 +78,8 @@ if (!org) {
      VALUES (?,?,?,?,?,?,?,?)`
   ).run(
     randomUUID(),
-    "EphaPhata with OT Power & The Attackers",
-    "EphaPhata",
+    "Ephphata with OT Power & The Attackers",
+    "Ephphata",
     "One gathering. One purpose.",
     "hello@ephaphata.com",
     null,

@@ -300,7 +300,7 @@ export default async function EventDetailPage({ params }: { params: Promise<{ sl
             <div>
               <p className="eyebrow text-ink-400">Bring someone</p>
               <p className="mt-2 max-w-md text-[0.9375rem] leading-relaxed text-ink-700">
-                Most people who come to EphaPhata were brought by someone. Share this gathering.
+                Most people who come to Ephphata were brought by someone. Share this gathering.
               </p>
             </div>
             <div className="flex flex-wrap gap-2.5">

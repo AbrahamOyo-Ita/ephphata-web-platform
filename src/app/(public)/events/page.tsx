@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Events",
-  description: "Upcoming and past EphaPhata gatherings.",
+  description: "Upcoming and past Ephphata gatherings.",
 };
 
 export default function EventsPage({

@@ -24,7 +24,7 @@ The event details currently in the database came from design flyers and are mark
 pastoral problem, not a technical one. Nothing in this system invents these values - but they are
 placeholders until the team confirms them.
 
-**Fix:** Admin → Events → *EphaPhata UNICAL 2026* → update and save. No deploy needed.
+**Fix:** Admin → Events → *Ephphata UNICAL 2026* → update and save. No deploy needed.
 
 ### 1.2 Email provider
 

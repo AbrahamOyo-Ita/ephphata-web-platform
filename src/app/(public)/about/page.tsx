@@ -15,7 +15,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "The story, mission and vision of EphaPhata - a worship and spiritual gathering with OT Power & The Attackers.",
+    "The story, mission and vision of Ephphata - a worship and spiritual gathering with OT Power & The Attackers.",
 };
 
 const VALUES = [
@@ -70,7 +70,7 @@ export default function AboutPage() {
 
           <Reveal delay={240}>
             <p className="mt-8 max-w-2xl text-body-lg leading-relaxed text-ink-600">
-              EphaPhata is a worship and spiritual gathering hosted by OT Power & The Attackers.
+              Ephphata is a worship and spiritual gathering hosted by OT Power & The Attackers.
               What began as a single evening in Calabar has become a recurring gathering that
               people travel for.
             </p>
@@ -120,7 +120,7 @@ export default function AboutPage() {
                 <div className="relative overflow-hidden rounded-xs ring-1 ring-ink-900/10">
                   <Flyer
                     slug="festival-lineup"
-                    alt="EphaPhata festival line-up artwork"
+                    alt="Ephphata festival line-up artwork"
                     ratio="2 / 1"
                     sizes="(max-width: 1024px) 100vw, 44vw"
                   />

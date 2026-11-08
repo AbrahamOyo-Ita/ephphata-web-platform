@@ -16,18 +16,18 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "EphaPhata - One gathering. One purpose.",
-    template: "%s · EphaPhata",
+    default: "Ephphata - One gathering. One purpose.",
+    template: "%s · Ephphata",
   },
   description: site.description,
   openGraph: {
-    title: "EphaPhata with OT Power & The Attackers",
+    title: "Ephphata with OT Power & The Attackers",
     description: site.description,
     type: "website",
-    siteName: "EphaPhata",
-    images: [{ url: "/brand/flyers/unical-lineup.webp", width: 864, height: 1080, alt: "EphaPhata Unical 2026" }],
+    siteName: "Ephphata",
+    images: [{ url: "/brand/flyers/unical-lineup.webp", width: 864, height: 1080, alt: "Ephphata Unical 2026" }],
   },
-  twitter: { card: "summary_large_image", title: "EphaPhata", description: site.description },
+    twitter: { card: "summary_large_image", title: "Ephphata", description: site.description },
   icons: {
     icon: [{ url: "/icon.svg", type: "image/svg+xml" }],
     apple: "/icon.svg",

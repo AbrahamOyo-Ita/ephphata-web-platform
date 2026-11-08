@@ -210,7 +210,7 @@ for. Rules should mean something or not exist.
 | Most `label-xs` micro-labels: "At a glance", "What you get", "Ten departments", "Order of service" kickers, "Doors", "Seating", "Entry" | The copy underneath already says it |
 | Stats notes (e.g. "Transcribed from the official flyer") | Second line of fine print under every figure |
 | Section-header descriptions that restated the heading | |
-| Artefact captions ("Official EphaPhata UNICAL artwork") | |
+| Artefact captions ("Official Ephphata UNICAL artwork") | |
 | `·` separators inside metadata lines | Replaced with plain spacing |
 | Hero divider under the statement | |
 

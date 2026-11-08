@@ -4,7 +4,7 @@ import { getSessionUser } from "@/lib/auth";
 import { AdminShell } from "@/components/admin/AdminShell";
 
 export const metadata: Metadata = {
-  title: { default: "Operations", template: "%s · EphaPhata Ops" },
+  title: { default: "Operations", template: "%s · Ephphata Ops" },
   robots: { index: false, follow: false },
 };
 

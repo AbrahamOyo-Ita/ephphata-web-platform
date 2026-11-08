@@ -72,6 +72,7 @@ export type RegistrationRow = {
   reference: string;
   first_name: string;
   last_name: string;
+  occupation: string;
   email: string;
   phone: string;
   whatsapp: string | null;

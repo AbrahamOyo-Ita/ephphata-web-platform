@@ -10,19 +10,19 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "FAQs",
-  description: "Answers to the questions we are asked most often about EphaPhata.",
+  description: "Answers to the questions we are asked most often about Ephphata.",
 };
 
 const GENERAL = [
   {
-    question: "What does EphaPhata mean?",
+    question: "What does Ephphata mean?",
     answer:
       "The name comes from the Aramaic word spoken in Mark 7:34 - \"be opened\". It frames everything about the gathering: an invitation for ears, hearts and lives to open to what God is doing.",
   },
   {
-    question: "Who hosts EphaPhata?",
+    question: "Who hosts Ephphata?",
     answer:
-      "EphaPhata is hosted by OT Power & The Attackers, with guest ministers joining each edition. The confirmed line-up for the next gathering is published on the event page.",
+      "Ephphata is hosted by OT Power & The Attackers, with guest ministers joining each edition. The confirmed line-up for the next gathering is published on the event page.",
   },
   {
     question: "How do I know an announcement is official?",

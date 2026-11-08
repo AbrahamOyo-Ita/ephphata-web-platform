@@ -300,7 +300,7 @@ export default function HomePage() {
             <div className="w-full max-w-[260px] justify-self-start lg:justify-self-end">
               <Flyer
                 slug="unical-portrait"
-                alt="Official EphaPhata UNICAL artwork"
+                alt="Official Ephphata UNICAL artwork"
                 ratio="1024 / 1280"
                 sizes="260px"
               />

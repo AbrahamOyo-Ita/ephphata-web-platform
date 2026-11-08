@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 export const metadata: Metadata = {
   title: "Prayer request",
   description:
-    "Submit a private prayer request to the EphaPhata prayer team. Anonymous submissions welcome.",
+    "Submit a private prayer request to the Ephphata prayer team. Anonymous submissions welcome.",
 };
 
 export default function PrayerPage() {

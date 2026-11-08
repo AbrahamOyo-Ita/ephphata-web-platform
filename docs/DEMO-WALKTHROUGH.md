@@ -32,7 +32,7 @@ Point at the countdown and the featured event.
 
 ## 2. Register as an attendee - 2 min
 
-Go to **Events → EphaPhata UNICAL 2026 → Register**.
+Go to **Events → Ephphata UNICAL 2026 → Register**.
 
 Fill the form (or use realistic details). Point out:
 

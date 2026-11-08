@@ -68,16 +68,17 @@ export function createRegistration(
   try {
     db.prepare(
       `INSERT INTO registrations
-        (id, event_id, reference, first_name, last_name, email, phone, whatsapp, city,
+        (id, event_id, reference, first_name, last_name, occupation, email, phone, whatsapp, city,
          attendance_intent, heard_via, communication_prefs, consent_privacy, consent_marketing,
          status, source, qr_token, created_by, notes)
-       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
+       VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`
     ).run(
       id,
       eventId,
       reference,
       input.firstName.trim(),
       input.lastName.trim(),
+      input.occupation.trim(),
       email,
       input.phone.trim(),
       input.whatsapp?.trim() ?? null,

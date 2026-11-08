@@ -44,7 +44,7 @@ export const footerNav = [
   {
     title: "Gathering",
     links: [
-      { label: "About EphaPhata", href: "/about" },
+      { label: "About Ephphata", href: "/about" },
       { label: "All events", href: "/events" },
       { label: "Programme", href: "/programme" },
       { label: "Media & gallery", href: "/media" },
@@ -53,7 +53,7 @@ export const footerNav = [
   {
     title: "Take part",
     links: [
-      { label: "Register", href: "/events" },
+      { label: "Register", href: "/register" },
       { label: "Volunteer", href: "/volunteer" },
       { label: "Prayer request", href: "/prayer" },
       { label: "Contact us", href: "/contact" },

@@ -46,7 +46,7 @@ export function AboutBlock() {
             />
 
             <p className="mt-7 max-w-xl text-[1.0625rem] leading-relaxed text-ink-700">
-              EphaPhata is a gathering built around a single invitation - to be opened.
+              Ephphata is a gathering built around a single invitation - to be opened.
               It is not a concert with a message attached; it is a room where worship,
               the word and prayer are given room to do their work.
             </p>
@@ -91,7 +91,7 @@ export function AboutBlock() {
             <Reveal duration={500}>
               <Flyer
                 slug="unical-portrait"
-                alt="Official EphaPhata UNICAL portrait artwork"
+                alt="Official Ephphata UNICAL portrait artwork"
                 ratio="1024 / 1280"
                 sizes="(max-width: 1024px) 100vw, 46vw"
               />

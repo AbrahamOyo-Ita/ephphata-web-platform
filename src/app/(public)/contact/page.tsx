@@ -10,7 +10,7 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with the EphaPhata organising team.",
+  description: "Get in touch with the Ephphata organising team.",
 };
 
 export default function ContactPage() {

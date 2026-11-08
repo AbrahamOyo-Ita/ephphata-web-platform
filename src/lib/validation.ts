@@ -56,6 +56,11 @@ export const registrationSchema = z.object({
   eventSlug: z.string().trim().min(1),
   firstName: nameRule,
   lastName: nameRule,
+  occupation: z
+    .string()
+    .trim()
+    .min(2, "Please enter your occupation.")
+    .max(100, "That occupation is too long."),
   email: emailRule,
   phone: phoneRule,
   whatsapp: optionalPhone,
@@ -146,6 +151,10 @@ export const contactSchema = z.object({
 export const adminRegistrationSchema = registrationSchema
   .omit({ honeypot: true, commNewsletter: true, eventSlug: true })
   .extend({
+    // Staff may be registering someone at the door and may not know this yet.
+    // The public form still requires occupation, while the admin API remains
+    // compatible with existing integrations and saved workflows.
+    occupation: z.string().trim().max(100).default("Not specified"),
     eventId: z.string().trim().min(1, "Choose an event."),
     notes: z.string().trim().max(500).optional().or(z.literal("")).transform((v) => v || undefined),
     status: z.enum(["confirmed", "waitlisted"]).default("confirmed"),

@@ -15,7 +15,7 @@ import { navigation } from "@/lib/site";
  * height jump.
  * - Keyboard accessible mobile drawer with focus management and scroll lock.
  */
-export function SiteHeader({ registerHref = "/events" }: { registerHref?: string }) {
+export function SiteHeader({ registerHref = "/register" }: { registerHref?: string }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
@@ -52,7 +52,7 @@ export function SiteHeader({ registerHref = "/events" }: { registerHref?: string
             {/* Wordmark */}
             <Link
               href="/"
-              aria-label="EphaPhata - home"
+              aria-label="Ephphata - home"
               className="group flex items-center gap-2.5"
             >
               <span className="grid h-8 w-8 place-items-center bg-ink-900">
@@ -180,7 +180,7 @@ export function SiteHeader({ registerHref = "/events" }: { registerHref?: string
               onClick={() => setOpen(false)}
               className="btn-ink w-full"
             >
-              Register for EphaPhata
+              Register for Ephphata
             </Link>
             <Link
               href="/admin/login"

@@ -19,7 +19,7 @@ Status for all of these is visible at **Admin → Settings**.
 
 ```env
 RESEND_API_KEY=re_xxxxxxxxxxxx
-EMAIL_FROM="EphaPhata <hello@ephaphata.com>"
+EMAIL_FROM="Ephphata <hello@ephaphata.com>"
 ```
 
 `EMAIL_FROM` must be on the verified domain, or delivery will be rejected.

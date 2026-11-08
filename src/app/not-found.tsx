@@ -57,7 +57,7 @@ export default function NotFound() {
 
       {/* Brand colour strip closes the page, artwork at full fidelity */}
       <BrandBG family="blue" overlay={false} priority className="h-[clamp(80px,10vw,140px)] w-full">
-        <span className="sr-only">EphaPhata blue brand artwork</span>
+        <span className="sr-only">Ephphata blue brand artwork</span>
       </BrandBG>
     </div>
   );

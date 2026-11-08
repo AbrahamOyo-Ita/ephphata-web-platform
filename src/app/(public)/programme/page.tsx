@@ -11,7 +11,7 @@ export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Programme",
-  description: "The order of service for the next EphaPhata gathering.",
+  description: "The order of service for the next Ephphata gathering.",
 };
 
 export default function ProgrammePage() {
@@ -123,7 +123,7 @@ export default function ProgrammePage() {
             <Reveal delay={200}>
               <div className="mt-10 border-t-2 border-ink-900 pt-6">
                 <p className="max-w-2xl text-[0.8125rem] leading-relaxed text-ink-600">
-                  <strong className="font-semibold text-ink-900">Please note:</strong> EphaPhata is
+                  <strong className="font-semibold text-ink-900">Please note:</strong> Ephphata is
                   an all-standing gathering. There are no physical seats available during the event.
                   Arriving before the start time means you will be settled before the first sound.
                 </p>
