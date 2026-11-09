@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Check, AlertCircle, Save } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 type EventInput = {
   id?: string;
@@ -212,11 +213,12 @@ export function EventForm({
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <div>
             <label htmlFor="status" className="field-label">Status</label>
-            <select id="status" value={values.status} onChange={(e) => set("status", e.target.value)} className="input">
-              {STATUS_OPTIONS.map((o) => (
-                <option key={o.value} value={o.value}>{o.label}</option>
-              ))}
-            </select>
+            <CustomSelect
+              id="status"
+              value={values.status}
+              onChange={(value) => set("status", value)}
+              options={STATUS_OPTIONS}
+            />
           </div>
           <div>
             <label htmlFor="capacity" className="field-label">Capacity <span className="font-normal text-ink-400">(0 = unlimited)</span></label>

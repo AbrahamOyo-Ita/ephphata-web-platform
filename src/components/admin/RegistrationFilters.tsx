@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState, useTransition } from "react";
 import { Search, X, SlidersHorizontal } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 export function RegistrationFilters({
   events,
@@ -61,16 +62,13 @@ export function RegistrationFilters({
         </form>
 
         {/* Event scope */}
-        <select
+        <CustomSelect
           value={current.event ?? ""}
-          onChange={(e) => apply({ event: e.target.value })}
+          onChange={(value) => apply({ event: value })}
           aria-label="Filter by event"
-          className="h-9 cursor-pointer rounded-xs border border-ink-900/10 bg-paper-50 px-2.5 text-[0.8125rem] text-ink-800 focus:border-ink-900 focus:outline-none"
-        >
-          {events.map((e) => (
-            <option key={e.id} value={e.id}>{e.title}</option>
-          ))}
-        </select>
+          className="min-w-[12rem]"
+          options={events.map((event) => ({ value: event.id, label: event.title }))}
+        />
 
         <button
           type="button"
@@ -168,15 +166,11 @@ function Select({
       <span className="mb-1 block text-[0.5625rem] font-bold uppercase tracking-[0.1em] text-ink-400">
         {label}
       </span>
-      <select
+      <CustomSelect
         value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="h-8 w-full cursor-pointer rounded-xs border border-ink-900/10 bg-white px-2 text-[0.75rem] text-ink-800 focus:border-ink-900 focus:outline-none"
-      >
-        {options.map(([v, l]) => (
-          <option key={v} value={v}>{l}</option>
-        ))}
-      </select>
+        onChange={onChange}
+        options={options.map(([value, label]) => ({ value, label }))}
+      />
     </label>
   );
 }

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, ShieldAlert, Mail, Lock, Check } from "lucide-react";
 import { StatusBadge } from "./StatusBadge";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 type Member = {
   id: string;
@@ -111,14 +112,13 @@ export function TeamTable({
                   <div className="ml-auto flex shrink-0 flex-wrap items-center justify-end gap-1.5">
                     {busyId === m.id && <Loader2 className="h-3.5 w-3.5 animate-spin text-ink-400" />}
 
-                    <select
+                    <CustomSelect
                       value={m.role}
-                      onChange={(e) => update(m.id, { role: e.target.value })}
+                      onChange={(value) => update(m.id, { role: value })}
                       disabled={locked || busyId === m.id}
                       aria-label={`Role for ${m.full_name}`}
-                      className="h-8 rounded-md border border-ink-900/10 bg-paper-50 px-2 text-[0.6875rem] font-medium text-ink-700 disabled:opacity-40"
-                    >
-                      {[
+                      className="min-w-[10rem]"
+                      options={[
                         "super_admin",
                         "event_admin",
                         "registration_officer",
@@ -129,12 +129,8 @@ export function TeamTable({
                         "programme_manager",
                         "check_in_officer",
                         "viewer",
-                      ].map((r) => (
-                        <option key={r} value={r}>
-                          {r.replace(/_/g, " ")}
-                        </option>
-                      ))}
-                    </select>
+                      ].map((value) => ({ value, label: value.replace(/_/g, " ") }))}
+                    />
 
                     {m.status === "suspended" ? (
                       <button

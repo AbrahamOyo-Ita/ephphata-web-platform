@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 import { Loader2, AlertCircle, ArrowRight, Check } from "lucide-react";
 import { contactSchema, fieldErrors } from "@/lib/validation";
 
@@ -134,17 +135,13 @@ export function ContactForm() {
 
       <div>
         <label htmlFor="subject" className="field-label">What is this about?</label>
-        <select
+        <CustomSelect
           id="subject"
           name="subject"
           value={values.subject}
-          onChange={(e) => set("subject", e.target.value)}
-          className="input"
-        >
-          {SUBJECTS.map((s) => (
-            <option key={s.value} value={s.value}>{s.label}</option>
-          ))}
-        </select>
+          onChange={(value) => set("subject", value)}
+          options={SUBJECTS}
+        />
       </div>
 
       <div>

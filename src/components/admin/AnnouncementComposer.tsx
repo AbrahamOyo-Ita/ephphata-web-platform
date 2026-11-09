@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Megaphone, Loader2, Check, AlertCircle } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 /**
  * Publishes a site announcement from the Content page.
@@ -116,16 +117,12 @@ export function AnnouncementComposer({ canManage }: { canManage: boolean }) {
             <label htmlFor="ann-severity" className="field-label">
               Severity
             </label>
-            <select
+            <CustomSelect
               id="ann-severity"
               value={severity}
-              onChange={(e) => setSeverity(e.target.value)}
-              className="input"
-            >
-              <option value="info">Info</option>
-              <option value="important">Important</option>
-              <option value="urgent">Urgent</option>
-            </select>
+              onChange={setSeverity}
+              options={[{ value: "info", label: "Info" }, { value: "important", label: "Important" }, { value: "urgent", label: "Urgent" }]}
+            />
           </div>
           <label className="mt-6 flex cursor-pointer items-start gap-2 rounded-xs bg-paper-50 p-2.5">
             <input

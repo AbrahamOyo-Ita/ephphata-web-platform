@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Search } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 export function AuditFilters({
   actions,
@@ -44,17 +45,13 @@ export function AuditFilters({
         />
       </form>
 
-      <select
+      <CustomSelect
         value={current.action ?? ""}
-        onChange={(e) => apply({ action: e.target.value })}
+        onChange={(value) => apply({ action: value })}
         aria-label="Filter by action"
-        className="h-9 cursor-pointer rounded-xs border border-ink-900/10 bg-paper-50 px-2.5 text-[0.8125rem] text-ink-800 focus:border-ink-900 focus:outline-none"
-      >
-        <option value="">All actions</option>
-        {actions.map((a) => (
-          <option key={a} value={a}>{a.replace(/\./g, " · ")}</option>
-        ))}
-      </select>
+        className="min-w-[12rem]"
+        options={[{ value: "", label: "All actions" }, ...actions.map((action) => ({ value: action, label: action.replace(/\./g, " · ") }))]}
+      />
     </div>
   );
 }

@@ -15,6 +15,7 @@ import {
   User,
   Clock,
 } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 type Stats = { total: number; checkedIn: number; rate: number };
 
@@ -238,19 +239,13 @@ export function CheckinConsole({
             ))}
           </div>
 
-          <select
+          <CustomSelect
             value={gate}
-            onChange={(e) => setGate(e.target.value)}
+            onChange={setGate}
             aria-label="Gate"
-            className="h-9 rounded-xs border border-ink-900/10 bg-white px-2.5 text-[0.75rem] font-medium text-ink-700 focus:border-ink-900 focus:outline-none"
-          >
-            <option>Gate A</option>
-            <option>Gate B</option>
-            <option>Main</option>
-            <option>VIP</option>
-            <option>Volunteers</option>
-            <option>Walk-in desk</option>
-          </select>
+            className="min-w-[9rem]"
+            options={["Gate A", "Gate B", "Main", "VIP", "Volunteers", "Walk-in desk"].map((value) => ({ value, label: value }))}
+          />
 
           <span className="ml-auto hidden text-[0.625rem] text-ink-400 sm:block">
             {events.find((e) => e.id === eventId)?.title}

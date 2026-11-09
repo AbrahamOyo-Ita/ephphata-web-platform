@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, Check, AlertCircle } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 const STATUSES = [
   { value: "submitted", label: "Submitted" },
@@ -75,31 +76,22 @@ export function VolunteerReviewPanel({
       <div className="mt-4 space-y-3">
         <div>
           <label htmlFor="status" className="field-label">Status</label>
-          <select
+          <CustomSelect
             id="status"
             value={status}
-            onChange={(e) => setStatus(e.target.value)}
-            className="input py-2.5 text-[0.8125rem]"
-          >
-            {STATUSES.map((s) => (
-              <option key={s.value} value={s.value}>{s.label}</option>
-            ))}
-          </select>
+            onChange={setStatus}
+            options={STATUSES}
+          />
         </div>
 
         <div>
           <label htmlFor="department" className="field-label">Assigned department</label>
-          <select
+          <CustomSelect
             id="department"
             value={departmentId}
-            onChange={(e) => setDepartmentId(e.target.value)}
-            className="input py-2.5 text-[0.8125rem]"
-          >
-            <option value="">- Unassigned -</option>
-            {departments.map((d) => (
-              <option key={d.id} value={d.id}>{d.name}</option>
-            ))}
-          </select>
+            onChange={setDepartmentId}
+            options={[{ value: "", label: "- Unassigned -" }, ...departments.map((d) => ({ value: d.id, label: d.name }))]}
+          />
         </div>
 
         <div>

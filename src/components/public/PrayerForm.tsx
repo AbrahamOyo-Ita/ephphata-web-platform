@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 import { Loader2, AlertCircle, ArrowRight, Check, Lock } from "lucide-react";
 import { prayerSchema, fieldErrors } from "@/lib/validation";
 
@@ -156,17 +157,13 @@ export function PrayerForm() {
         <label htmlFor="category" className="field-label">
           Category
         </label>
-        <select
+        <CustomSelect
           id="category"
           name="category"
           value={values.category}
-          onChange={(e) => set("category", e.target.value)}
-          className="input"
-        >
-          {CATEGORIES.map((c) => (
-            <option key={c.value} value={c.value}>{c.label}</option>
-          ))}
-        </select>
+          onChange={(value) => set("category", value)}
+          options={CATEGORIES}
+        />
       </div>
 
       <div className="rounded-sm border border-ink-900/10 bg-paper-50 p-4">

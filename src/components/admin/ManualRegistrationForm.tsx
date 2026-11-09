@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Loader2, AlertCircle, Check, ArrowRight, Copy } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 type Errors = Record<string, string>;
 
@@ -164,16 +165,12 @@ export function ManualRegistrationForm({
 
       <div>
         <label htmlFor="eventId" className="field-label">Event</label>
-        <select
+        <CustomSelect
           id="eventId"
           value={values.eventId}
-          onChange={(e) => set("eventId", e.target.value)}
-          className="input"
-        >
-          {events.map((e) => (
-            <option key={e.id} value={e.id}>{e.title}</option>
-          ))}
-        </select>
+          onChange={(value) => set("eventId", value)}
+          options={events.map((event) => ({ value: event.id, label: event.title }))}
+        />
       </div>
 
       <div className="grid gap-3 sm:grid-cols-2">
@@ -194,10 +191,12 @@ export function ManualRegistrationForm({
         <AdminField label="City" name="city" value={values.city} onChange={(v) => set("city", v)} error={errors.city} optional />
         <div>
           <label htmlFor="status" className="field-label">Registration status</label>
-          <select id="status" value={values.status} onChange={(e) => set("status", e.target.value)} className="input">
-            <option value="confirmed">Confirmed</option>
-            <option value="waitlisted">Waitlisted</option>
-          </select>
+          <CustomSelect
+            id="status"
+            value={values.status}
+            onChange={(value) => set("status", value)}
+            options={[{ value: "confirmed", label: "Confirmed" }, { value: "waitlisted", label: "Waitlisted" }]}
+          />
         </div>
       </div>
 

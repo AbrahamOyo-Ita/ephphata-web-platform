@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 import {
   Loader2,
   AlertCircle,
@@ -203,19 +204,15 @@ export function VolunteerForm({
           <label htmlFor="departmentId" className="field-label">
             First choice department <span className="text-danger" aria-hidden="true">*</span>
           </label>
-          <select
+          <CustomSelect
             id="departmentId"
             name="departmentId"
             value={values.departmentId}
-            onChange={(e) => set("departmentId", e.target.value)}
-            aria-invalid={Boolean(errors.departmentId)}
-            className="input"
-          >
-            <option value="">Select a department</option>
-            {departments.map((d) => (
-              <option key={d.id} value={d.id}>{d.name}</option>
-            ))}
-          </select>
+            onChange={(value) => set("departmentId", value)}
+            aria-label="First choice department"
+            invalid={Boolean(errors.departmentId)}
+            options={[{ value: "", label: "Select a department" }, ...departments.map((d) => ({ value: d.id, label: d.name }))]}
+          />
           {errors.departmentId && (
             <p className="field-error" role="alert">
               <AlertCircle className="mt-px h-3.5 w-3.5 shrink-0" strokeWidth={2.4} />
@@ -228,20 +225,13 @@ export function VolunteerForm({
           <label htmlFor="secondChoiceId" className="field-label">
             Second choice <span className="ml-1.5 font-normal text-ink-400">(optional)</span>
           </label>
-          <select
+          <CustomSelect
             id="secondChoiceId"
             name="secondChoiceId"
             value={values.secondChoiceId}
-            onChange={(e) => set("secondChoiceId", e.target.value)}
-            className="input"
-          >
-            <option value="">No preference</option>
-            {departments
-              .filter((d) => d.id !== values.departmentId)
-              .map((d) => (
-                <option key={d.id} value={d.id}>{d.name}</option>
-              ))}
-          </select>
+            onChange={(value) => set("secondChoiceId", value)}
+            options={[{ value: "", label: "No preference" }, ...departments.filter((d) => d.id !== values.departmentId).map((d) => ({ value: d.id, label: d.name }))]}
+          />
         </div>
       </div>
 

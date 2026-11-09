@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Loader2, UserPlus, AlertCircle, Check } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 export function InviteMemberForm({ roles }: { roles: { value: string; label: string }[] }) {
   const router = useRouter();
@@ -81,11 +82,7 @@ export function InviteMemberForm({ roles }: { roles: { value: string; label: str
         </div>
         <div>
           <label htmlFor="inv-role" className="field-label">Role</label>
-          <select id="inv-role" value={role} onChange={(e) => setRole(e.target.value)} className="input">
-            {roles.map((r) => (
-              <option key={r.value} value={r.value}>{r.label}</option>
-            ))}
-          </select>
+          <CustomSelect id="inv-role" value={role} onChange={setRole} options={roles} />
         </div>
       </div>
 

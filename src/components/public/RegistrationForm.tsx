@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Loader2, AlertCircle, ArrowRight, Info } from "lucide-react";
 import { registrationSchema, fieldErrors, formatPhone } from "@/lib/validation";
 import { HEARD_VIA_LABELS } from "@/lib/site";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 const HEARD_OPTIONS = Object.entries(HEARD_VIA_LABELS);
 
@@ -229,19 +230,13 @@ export function RegistrationForm({
           <label htmlFor="heardVia" className="field-label">
             How did you hear about Ephphata?
           </label>
-          <select
+          <CustomSelect
             id="heardVia"
             name="heardVia"
             value={values.heardVia}
-            onChange={(e) => set("heardVia", e.target.value)}
-            className="input"
-          >
-            {HEARD_OPTIONS.map(([key, label]) => (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            ))}
-          </select>
+            onChange={(value) => set("heardVia", value)}
+            options={HEARD_OPTIONS.map(([value, label]) => ({ value, label }))}
+          />
           {errors.heardVia && <p className="field-error">{errors.heardVia}</p>}
         </div>
       </div>

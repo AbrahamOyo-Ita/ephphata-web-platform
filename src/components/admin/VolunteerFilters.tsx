@@ -3,6 +3,7 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { Search } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 export function VolunteerFilters({
   departments,
@@ -44,31 +45,28 @@ export function VolunteerFilters({
         />
       </form>
 
-      <select
+      <CustomSelect
         value={current.department ?? ""}
-        onChange={(e) => apply({ department: e.target.value })}
+        onChange={(value) => apply({ department: value })}
         aria-label="Filter by department"
-        className="h-9 cursor-pointer rounded-xs border border-ink-900/10 bg-paper-50 px-2.5 text-[0.8125rem] text-ink-800 focus:border-ink-900 focus:outline-none"
-      >
-        <option value="">All departments</option>
-        {departments.map((d) => (
-          <option key={d.id} value={d.id}>{d.name}</option>
-        ))}
-      </select>
+        className="min-w-[10rem]"
+        options={[{ value: "", label: "All departments" }, ...departments.map((d) => ({ value: d.id, label: d.name }))]}
+      />
 
-      <select
+      <CustomSelect
         value={current.status ?? ""}
-        onChange={(e) => apply({ status: e.target.value })}
+        onChange={(value) => apply({ status: value })}
         aria-label="Filter by status"
-        className="h-9 cursor-pointer rounded-xs border border-ink-900/10 bg-paper-50 px-2.5 text-[0.8125rem] text-ink-800 focus:border-ink-900 focus:outline-none"
-      >
-        <option value="">All statuses</option>
-        <option value="submitted">Submitted</option>
-        <option value="under_review">Under review</option>
-        <option value="accepted">Accepted</option>
-        <option value="waitlisted">Waitlisted</option>
-        <option value="declined">Declined</option>
-      </select>
+        className="min-w-[10rem]"
+        options={[
+          { value: "", label: "All statuses" },
+          { value: "submitted", label: "Submitted" },
+          { value: "under_review", label: "Under review" },
+          { value: "accepted", label: "Accepted" },
+          { value: "waitlisted", label: "Waitlisted" },
+          { value: "declined", label: "Declined" },
+        ]}
+      />
     </div>
   );
 }

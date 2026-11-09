@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Loader2, Send, AlertCircle, Check, Info } from "lucide-react";
+import { CustomSelect } from "@/components/ui/CustomSelect";
 
 const AUDIENCES = [
   { value: "event_registrants", label: "Event registrants (confirmed)" },
@@ -115,28 +116,22 @@ export function CampaignComposer({
         <div className="grid grid-cols-2 gap-3">
           <div>
             <label htmlFor="channel" className="field-label">Channel</label>
-            <select id="channel" value={channel} onChange={(e) => setChannel(e.target.value as "email" | "whatsapp")} className="input">
-              <option value="email">Email</option>
-              <option value="whatsapp">WhatsApp</option>
-            </select>
+            <CustomSelect
+              id="channel"
+              value={channel}
+              onChange={(value) => setChannel(value as "email" | "whatsapp")}
+              options={[{ value: "email", label: "Email" }, { value: "whatsapp", label: "WhatsApp" }]}
+            />
           </div>
           <div>
             <label htmlFor="template" className="field-label">Template</label>
-            <select id="template" value={template} onChange={(e) => setTemplate(e.target.value)} className="input">
-              {TEMPLATES.map((t) => (
-                <option key={t.value} value={t.value}>{t.label}</option>
-              ))}
-            </select>
+            <CustomSelect id="template" value={template} onChange={setTemplate} options={TEMPLATES} />
           </div>
         </div>
 
         <div>
           <label htmlFor="audience" className="field-label">Audience</label>
-          <select id="audience" value={audience} onChange={(e) => setAudience(e.target.value)} className="input">
-            {AUDIENCES.map((a) => (
-              <option key={a.value} value={a.value}>{a.label}</option>
-            ))}
-          </select>
+          <CustomSelect id="audience" value={audience} onChange={setAudience} options={AUDIENCES} />
         </div>
 
         <div>
